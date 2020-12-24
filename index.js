@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 var Message = mongoose.model('Message',{
   user : String,
   text : String,
+  //khan
   //category: String,
  // post: String,
 });
