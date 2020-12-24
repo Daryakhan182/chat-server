@@ -16,7 +16,8 @@ var Message = mongoose.model('Message',{
   //category: String,
  // post: String,
 });
-var dbUrl = 'mongodb://localhost:27017/WorkerData'
+//var dbUrl = 'mongodb://localhost:27017/WorkerData'
+var dbUrl = 'mongodb+srv://daryakhan:daryakhan@workerdata.pzxbl.mongodb.net/workerData?retryWrites=true&w=majority'
 
 io.on('connection', (socket) => {
  
