@@ -55,7 +55,7 @@ app.get('/messages', function (req, res){
   })
 });
 
-app.get('/',  function (req, res) {
+app.get('/chat',  function (req, res) {
   res.status(200).send({
     message: 'Express backend server'});
 });
