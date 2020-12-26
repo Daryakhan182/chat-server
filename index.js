@@ -4,6 +4,8 @@ let server = require('http').createServer(app);
 let io = require('socket.io')(server);
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+require('dotenv').config()
+
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
@@ -17,7 +19,7 @@ var Message = mongoose.model('Message',{
  // post: String,
 });
 //var dbUrl = 'mongodb://localhost:27017/WorkerData'
-var dbUrl = 'mongodb+srv://daryakhan:daryakhan@workerdata.pzxbl.mongodb.net/workerData?retryWrites=true&w=majority'
+var dbUrl = process.env.dbUrl;
 
 io.on('connection', (socket) => {
  
@@ -49,13 +51,10 @@ app.get('/messages', function (req, res){
   })
 })
 
-mongoose.connect(dbUrl ,{ useNewUrlParser: true,useCreateIndex: true, useUnifiedTopology: true } ,(err) => {
-  console.log('mongodb connected',err);
-});
+mongoose.connect(dbUrl ,{ useNewUrlParser: true,useCreateIndex: true, useUnifiedTopology: true });
+ app.set('port', (process.env.PORT));
  
-var port = process.env.PORT || 3000;
- 
-server.listen(port, function(){
-   console.log('listening in http://localhost:' + port);
-});
+server.listen(app.get('port'));
+
+console.log('chat server is on at port',app.get('port'));
 
