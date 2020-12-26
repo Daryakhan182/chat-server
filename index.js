@@ -52,9 +52,9 @@ app.get('/messages', function (req, res){
 })
 
 mongoose.connect(dbUrl ,{ useNewUrlParser: true,useCreateIndex: true, useUnifiedTopology: true });
+
  app.set('port', (process.env.PORT));
  
-server.listen(app.get('port'));
 
 app.get('/',  function (req, res) {
   res.status(200).send({
