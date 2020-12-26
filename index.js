@@ -56,5 +56,11 @@ mongoose.connect(dbUrl ,{ useNewUrlParser: true,useCreateIndex: true, useUnified
  
 server.listen(app.get('port'));
 
+app.get('/',  function (req, res) {
+  res.status(200).send({
+    message: 'Express backend server'});
+});
+
+
 console.log('chat server is on at port',app.get('port'));
 
