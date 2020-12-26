@@ -20,7 +20,11 @@ var Message = mongoose.model('Message',{
 });
 //var dbUrl = 'mongodb://localhost:27017/WorkerData'
 var dbUrl = process.env.dbUrl;
+app.set('port', (process.env.PORT));
+mongoose.connect(dbUrl ,{ useNewUrlParser: true,useCreateIndex: true, useUnifiedTopology: true });
 
+ 
+ 
 io.on('connection', (socket) => {
  
   socket.on('disconnect', function(){
@@ -49,17 +53,16 @@ app.get('/messages', function (req, res){
   Message.find({},(err, messages)=> {
     res.send(messages);
   })
-})
-
-mongoose.connect(dbUrl ,{ useNewUrlParser: true,useCreateIndex: true, useUnifiedTopology: true });
-
- app.set('port', (process.env.PORT));
- 
+});
 
 app.get('/',  function (req, res) {
   res.status(200).send({
     message: 'Express backend server'});
 });
+
+
+ 
+server.listen(app.get('port'));
 
 
 console.log('chat server is on at port',app.get('port'));
