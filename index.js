@@ -23,10 +23,6 @@ var dbUrl = process.env.dbUrl;
 app.set('port', (process.env.PORT));
 mongoose.connect(dbUrl ,{ useNewUrlParser: true,useCreateIndex: true, useUnifiedTopology: true });
 
-app.get('/',  function (req, res) {
-  res.send({
-    message: 'Express backend server'});
-});
  
  
 io.on('connection', (socket) => {
@@ -59,12 +55,14 @@ app.get('/messages', function (req, res){
   })
 });
 
-
+server.listen(app.get('port'), function(){
+   console.log('chat server is on at port',app.get('port'));
+});
 
 
  
-server.listen(app.get('port'));
+/*server.listen(app.get('port'));
 
 
 console.log('chat server is on at port',app.get('port'));
-
+*/
